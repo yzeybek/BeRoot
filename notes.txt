@@ -1,0 +1,21 @@
+docker root konumu ile kullanıcının home'u birleşecek
+docker terminal ile bağımlı çalışacak -> Wterm ✅ !desktop
+docker derleme özelliklerine sahip olacak -> Wdev ✅
+docker içinde vscode olacak ->Wcode ✅ !gui !desktop
+docker ekstradan header aracına sahip olacak -> Whead
+docker her şeyiyle goinfre klasörüne konulmalı
+
+Wcode şuan ki bütün özelliklerinin üstüne şunlara sahip olacak;
+- Gerekli bütün eklentiler (docker olanlar dahil), ✅
+- Docker root terminaline bağlantı -> Wterm, ✅
+- Gerekli bütün ayarlar da yapılmış olacak -> Wdev, ✅
+- Debug direk olarak en azından C için yapılabilecek -> Wdebug
+
+Docker ekstradan GUI uygulamalarını çalıştırabilmeli. Ancak bu özellik 42 bilgisayarlarında denenecek.
+
+Günün sonunda docker'da olan uygulamalar; (Dockerfile'da)
+- VSCode ✅
+- terminal ✅
+Hepsinin .desktop dosyası ve dock favorisi ile direk açılabilmeli
+- VSCode
+- terminal

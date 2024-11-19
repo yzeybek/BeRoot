@@ -1,0 +1,28 @@
+{
+	"vscode": {
+		"extensions": [
+			"ms-vscode.cpptools",
+			"ms-vscode.makefile-tools",
+			"ms-azuretools.vscode-docker",
+			"ms-vscode-remote.remote-containers",
+			"gruntfuggly.todo-tree",
+			"dokca.42-ft-count-line",
+			"evilcat.norminette-42",
+			"kube.42header",
+			"keyhr.42-c-format"
+		],
+		"settings": {
+			"42header.email": "",
+			"42header.username": "",
+			"files.autoSave": "afterDelay",
+			"editor.insertSpaces": false,
+			"editor.renderWhitespace": "all",
+			"files.insertFinalNewline": true,
+			"files.trimTrailingWhitespace": true,
+			"makefile.configureOnOpen": true,
+			"[c]": {
+				"editor.defaultFormatter": "keyhr.42-c-format"
+			}
+		}
+	}
+}
