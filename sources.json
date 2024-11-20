@@ -22,7 +22,8 @@
 			"makefile.configureOnOpen": true,
 			"[c]": {
 				"editor.defaultFormatter": "keyhr.42-c-format"
-			}
+			},
+			"terminal.integrated.defaultProfile.linux": "bash"
 		}
 	}
 }

@@ -21,7 +21,7 @@ RUN apt-get install -y \
 	wget \
 	gpg \
 	&& apt-get clean autoclean \
-    	&& apt-get autoremove --yes
+    && apt-get autoremove --yes
 
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg \
 	&& install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg \
@@ -31,7 +31,11 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
 	&& apt update \
 	&& apt install code
 
+WORKDIR /root
+
 RUN pipx install norminette && pipx ensurepath \
 	&& python3 -m pip config set global.break-system-packages true \
 	&& pip3 install c_formatter_42 \
 	&& bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
+
+CMD [ "/usr/bin/bash" ]
