@@ -1,36 +1,24 @@
 #!/usr/bin/bash
 
 add_setting() {
-    local new_setting="$1"
-    local settings_file="deneme.json"
+    local new_setting=$1
+    local settings_file="$HOME/.config/Code/User/settings.json"
 
-    # Ensure the settings file exists
-    if [[ ! -f "$settings_file" ]]; then
-        echo "{}" > "$settings_file"
+    mkdir -p "$(dirname "$settings_file")"
+    touch "$settings_file"
+
+    if [ ! -s "$settings_file" ]; then
+        echo -e "{\n    ${new_setting}\n}" > "$settings_file"
+        return
     fi
 
-    # Read the current content, removing comments and unnecessary newlines
-    local content
-    content=$(grep -v '^//' "$settings_file" | tr -d '\n' | tr -d '\r')
+    local current_content
+    current_content=$(cat "$settings_file" | jq .)
 
-    # Ensure the content starts with '{' and ends with '}' (valid JSON object)
-    if [[ "$content" != \{* ]]; then
-        content="{$content"
-    fi
-    if [[ "$content" != *\} ]]; then
-        content="${content}}"
-    fi
+    local updated_content
+    updated_content=$(echo "$current_content" | jq --argjson new_setting "{${new_setting}}" '. + $new_setting')
 
-    # Remove the trailing brace to prepare for adding new settings
-    content="${content%}}"
-
-    # If the content is just `{`, it's empty; add the new setting directly
-    if [[ "$content" == "{" ]]; then
-        echo "{$new_setting}" > "$settings_file"
-    else
-        # Otherwise, append the new setting with a comma
-        echo "${content},${new_setting}}" > "$settings_file"
-    fi
+    echo "$updated_content" | jq . > "$settings_file"
 }
 
 SET_EMAIL='"42header.email": ""'
@@ -44,13 +32,13 @@ SET_MAKE='"makefile.configureOnOpen": true'
 SET_FORMAT='"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'
 SET_TERMINAL='"terminal.integrated.defaultProfile.linux": "bash"'
 
-# add_setting "$SET_EMAIL"
-# add_setting "$SET_USERNAME"
+add_setting "$SET_EMAIL"
+add_setting "$SET_USERNAME"
 add_setting "$SET_SAVE"
-# add_setting "$SET_SPACE"
-# add_setting "$SET_WHITESPACE"
-# add_setting "$SET_NEWLINE"
-# add_setting "$SET_TRIM"
-# add_setting "$SET_MAKE"
-# add_setting "$SET_FORMAT"
-# add_setting "$SET_TERMINAL"
+add_setting "$SET_SPACE"
+add_setting "$SET_WHITESPACE"
+add_setting "$SET_NEWLINE"
+add_setting "$SET_TRIM"
+add_setting "$SET_MAKE"
+add_setting "$SET_FORMAT"
+add_setting "$SET_TERMINAL"
