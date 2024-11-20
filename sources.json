@@ -10,20 +10,6 @@
 			"evilcat.norminette-42",
 			"kube.42header",
 			"keyhr.42-c-format"
-		],
-		"settings": {
-			"42header.email": "",
-			"42header.username": "",
-			"files.autoSave": "afterDelay",
-			"editor.insertSpaces": false,
-			"editor.renderWhitespace": "all",
-			"files.insertFinalNewline": true,
-			"files.trimTrailingWhitespace": true,
-			"makefile.configureOnOpen": true,
-			"[c]": {
-				"editor.defaultFormatter": "keyhr.42-c-format"
-			},
-			"terminal.integrated.defaultProfile.linux": "bash"
-		}
+		]
 	}
 }
