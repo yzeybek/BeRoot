@@ -1,28 +1,29 @@
 #!/usr/bin/bash
 
 add_keybinding() {
-    local new_keybinding="$1"
-    local keybindings_file="~/.config/Code/User/keybindings.json"
+    local new_keybinding=$1
+    local keybindings_file="$HOME/.config/Code/User/keybindings.json"
 
-    if [[ ! -f "$keybindings_file" ]]; then
-        echo "[]" > "$keybindings_file"
+    mkdir -p "$(dirname "$keybindings_file")"
+    touch "$keybindings_file"
+
+    if [ ! -s "$keybindings_file" ]; then
+        echo -e "[\n    $new_keybinding\n]" > "$keybindings_file"
+        return
     fi
 
-    local content
-    content=$(grep -v '^//' "$keybindings_file" | tr -d '\n' | tr -d '\r')
+    local current_content
+    current_content=$(cat "$keybindings_file" | jq .)
 
-    content=$(echo "$content" | tr -d '\n' | tr -d '\r')
-
-    if [[ "$content" == "[]" ]]; then
-        echo "[$new_keybinding]" > "$keybindings_file"
-    else
-        if [[ "$content" =~ \]$ ]]; then
-            content="${content%?}"
-            echo "$content,$new_keybinding]" > "$keybindings_file"
-        else
-            echo "$content$new_keybinding]" > "$keybindings_file"
-        fi
+    if [ "$current_content" == "null" ]; then
+        echo -e "[\n    $new_keybinding\n]" > "$keybindings_file"
+        return
     fi
+
+    local updated_content
+    updated_content=$(echo "$current_content" | jq ". + [$new_keybinding]")
+
+    echo "$updated_content" | jq . > "$keybindings_file"
 }
 
 KEY_C='{"key": "meta+c","command": "workbench.action.terminal.copySelection","when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"}'

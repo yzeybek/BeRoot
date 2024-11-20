@@ -2,4 +2,3 @@
  + find a way to add extensions to vscode via terminal
  + implement debuggin on via vscode
  + addignore should be usable even if terminal not open
- + fix settings script
