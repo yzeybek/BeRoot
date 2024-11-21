@@ -8,16 +8,16 @@ cat << 'EOF' > "$TASKS_FILE"
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Wignore",
+            "label": "Add .gitignore",
             "type": "shell",
-            "command": "~/.config/Code/User/Wignore.bash",
+            "command": "~/.config/Code/User/gitignore.bash",
             "presentation": {
                 "reveal": "never"
             },
             "problemMatcher": []
         },
         {
-            "label": "Wdebug",
+            "label": "Build C Files",
             "type": "shell",
             "command": "bash",
             "args": [

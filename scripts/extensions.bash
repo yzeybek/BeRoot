@@ -2,7 +2,7 @@
 
 add_extension() {
     local extension=$1
-
+SET_DEBUG
     if ! command -v code &> /dev/null; then
         echo "Error: 'code' command is not available. Ensure VSCode is installed and 'code' is added to PATH."
         return 1
@@ -33,6 +33,7 @@ EXT_COUNT="dokca.42-ft-count-line"
 EXT_NORM="evilcat.norminette-42"
 EXT_HEAD="kube.42header"
 EXT_FORMAT="keyhr.42-c-format"
+EXT_LAUNCH='arturodent.launch-config'
 
 add_extension "$EXT_C"
 add_extension "$EXT_MAKE"

@@ -31,6 +31,7 @@ SET_TRIM='"files.trimTrailingWhitespace": true'
 SET_MAKE='"makefile.configureOnOpen": true'
 SET_FORMAT='"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'
 SET_TERMINAL='"terminal.integrated.defaultProfile.linux": "bash"'
+SET_DEBUG='"launches": {"C_Debug":"Debug C Files"}}'
 
 add_setting "$SET_EMAIL"
 add_setting "$SET_USERNAME"
@@ -42,3 +43,4 @@ add_setting "$SET_TRIM"
 add_setting "$SET_MAKE"
 add_setting "$SET_FORMAT"
 add_setting "$SET_TERMINAL"
+add_setting "$SET_DEBUG"

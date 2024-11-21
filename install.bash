@@ -9,11 +9,11 @@ docker run -it --restart-always \
 	-v $HOME:/root \
     Wroot
 
-# Setup Wignore
-SCRIPT="$HOME/.config/Code/User/Wignore.bash"
-mkdir -p "$(dirname "$SCRIPT")"
+# Setup .gitignore Script
+GITIGNORE_SCRIPT="$HOME/.config/Code/User/gitignore.bash"
+mkdir -p "$(dirname "$IGNORE_SCRIPT")"
 
-cat << 'EOF' > "$SCRIPT"
+cat << 'EOF' > "$IGNORE_SCRIPT"
 #!/usr/bin/bash
 
 gitignore_file=".gitignore"
@@ -37,4 +37,4 @@ if [ ! -f "$gitignore_file" ]; then
 fi
 EOF
 
-chmod +x "$SCRIPT"
+chmod +x "$IGNORE_SCRIPT"

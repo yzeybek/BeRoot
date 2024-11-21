@@ -8,7 +8,7 @@ cat << 'EOF' > "$TASKS_FILE"
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C Program",
+            "name": "Debug C Files",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/Debug/debug",
@@ -25,7 +25,7 @@ cat << 'EOF' > "$TASKS_FILE"
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build and Debug C Files",
+            "preLaunchTask": "Build C Files",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
