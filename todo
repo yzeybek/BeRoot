@@ -1,5 +1,5 @@
  + add desktop files and favorite handler bash script
- + add launch.json
  + test
   - is jq for bash script is downloaded
   - is debug working alrigth
+  - is launch working alrigth

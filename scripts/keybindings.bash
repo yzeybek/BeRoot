@@ -35,6 +35,7 @@ KEY_V_REMOVE='{"key": "ctrl+shift+v","command": "-workbench.action.terminal.past
 KEY_WIGNORE='{"key": "meta+g","command": "workbench.action.tasks.runTask","args": "Wignore"}'
 
 KEY_WDEBUG='{"key": "meta+b","command": "workbench.action.tasks.runTask","args": "Wdebug"}'
+KEY_LAUNCH='{"key": "meta+n","command": "workbench.action.debug.start"}'
 
 add_keybinding "$KEY_C"
 add_keybinding "$KEY_C_REMOVE"
