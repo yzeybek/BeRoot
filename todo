@@ -1,4 +1,6 @@
  + add desktop files and favorite handler bash script
- + find a way to add extensions to vscode via terminal
  + implement debuggin on via vscode
  + addignore should be usable even if terminal not open
+
+ + test
+  - is jq for bash script is downloaded
