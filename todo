@@ -1,6 +1,5 @@
  + add desktop files and favorite handler bash script
- + implement debuggin on via vscode
- + addignore should be usable even if terminal not open
-
+ + add launch.json
  + test
   - is jq for bash script is downloaded
+  - is debug working alrigth

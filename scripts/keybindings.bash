@@ -32,10 +32,12 @@ KEY_C_REMOVE='{"key": "ctrl+shift+c","command": "-workbench.action.terminal.copy
 KEY_V='{"key": "meta+v","command": "workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
 KEY_V_REMOVE='{"key": "ctrl+shift+v","command": "-workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
 
-KEY_ADD='{"key": "meta+g","command": "workbench.action.terminal.sendSequence","args": {"text": "addignore\u000D"}}'
+KEY_WIGNORE='{"key": "meta+g","command": "workbench.action.tasks.runTask","args": "Wignore"}'
+
+KEY_WDEBUG='{"key": "meta+b","command": "workbench.action.tasks.runTask","args": "Wdebug"}'
 
 add_keybinding "$KEY_C"
 add_keybinding "$KEY_C_REMOVE"
 add_keybinding "$KEY_V"
 add_keybinding "$KEY_V_REMOVE"
-add_keybinding "$KEY_ADD"
+add_keybinding "$KEY_WIGNORE"
