@@ -13,12 +13,9 @@ add_extension() {
         return 0
     fi
 
-    echo "Installing extension '${extension}'..."
     code --install-extension "$extension" --force
 
-    if code --list-extensions | grep -q "^${extension}$"; then
-        echo "Extension '${extension}' installed successfully."
-    else
+    if ! code --list-extensions | grep -q "^${extension}$"; then
         echo "Error: Failed to install extension '${extension}'."
         return 1
     fi

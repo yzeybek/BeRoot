@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-LAUNCHS_FILE="~/.config/Code/User/launch.json"
+LAUNCHS_FILE="$HOME/.config/Code/User/launch.json"
 mkdir -p "$(dirname "$LAUNCHS_FILE")"
 
 cat << 'EOF' > "$LAUNCHS_FILE"
@@ -25,7 +25,6 @@ cat << 'EOF' > "$LAUNCHS_FILE"
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "Build C Files",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
