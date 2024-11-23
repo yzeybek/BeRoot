@@ -31,11 +31,11 @@ KEY_C_REMOVE='{"key": "ctrl+shift+c","command": "-workbench.action.terminal.copy
 KEY_V='{"key": "meta+v","command": "workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
 KEY_V_REMOVE='{"key": "ctrl+shift+v","command": "-workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
 KEY_GITIGNORE='{"key": "meta+shift+g","command": "workbench.action.tasks.runTask","args": "Add .gitignore"}'
-KEY_C_DEBUG='{"key": "meta+shift+d","command": "launches.C_Debug"}'
+KEY_BUILD='{"key": "meta+shift+d","command": "workbench.action.tasks.runTask","args": "Setup and Build"}'
 
 add_keybinding "$KEY_C"
 add_keybinding "$KEY_C_REMOVE"
 add_keybinding "$KEY_V"
 add_keybinding "$KEY_V_REMOVE"
 add_keybinding "$KEY_GITIGNORE"
-add_keybinding "$KEY_C_DEBUG"
+add_keybinding "$KEY_BUILD"

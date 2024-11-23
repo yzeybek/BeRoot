@@ -22,8 +22,15 @@ cat << 'EOF' > "$TASKS_FILE"
             "command": "bash",
             "args": [
                 "-c",
-                "mkdir -p Debug && gcc -Wall -Wextra -Werror -g $(find . -type f -name '*.c' ! -path './test/*' ! -path './data/*' ! -path './Debug/*' ! -path './build/*') -I . -o Debug/debug"
+                "cp ~/.config/Code/User/global-launch.json .vscode/launch.json \
+                && mkdir -p debug \
+                && gcc -Wall -Wextra -Werror -g $(find . -type f -name '*.c' ! -path './test/*' ! -path './data/*' ! -path './Debug/*' ! -path './build/*') -I . -o debug/debug \
+                && code --command launches.C_Debug"
             ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true

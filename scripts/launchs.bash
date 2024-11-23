@@ -1,8 +1,6 @@
 #!/usr/bin/bash
 
-CURRENT_DIR=${PWD}
-
-LAUNCHS_FILE="$CURRENT_DIR/.vscode/launch.json"
+LAUNCHS_FILE="~/.config/Code/User/launch.json"
 mkdir -p "$(dirname "$LAUNCHS_FILE")"
 
 cat << 'EOF' > "$LAUNCHS_FILE"
