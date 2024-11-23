@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-TASKS_FILE=".vscode/tasks.json"
+TASKS_FILE="$HOME/.config/Code/User/tasks.json"
 mkdir -p "$(dirname "$TASKS_FILE")"
 
 cat << 'EOF' > "$TASKS_FILE"

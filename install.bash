@@ -38,3 +38,9 @@ fi
 EOF
 
 chmod +x "$IGNORE_SCRIPT"
+
+bash scripts/extensions.bash
+bash scripts/settings.bash
+bash scripts/tasks.bash
+bash scripts/launchs.bash
+bash scripts/keybindings.bash

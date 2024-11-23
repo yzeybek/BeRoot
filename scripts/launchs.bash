@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-TASKS_FILE=".vscode/launch.json"
-mkdir -p "$(dirname "$TASKS_FILE")"
+LAUNCHS_FILE="$HOME/.config/Code/User/launch.json"
+mkdir -p "$(dirname "$LAUNCHS_FILE")"
 
-cat << 'EOF' > "$TASKS_FILE"
+cat << 'EOF' > "$LAUNCHS_FILE"
 {
     "version": "0.2.0",
     "configurations": [
