@@ -1,3 +1,5 @@
  + add desktop files and favorite handler bash script
+ + handle setup and build task with using code --command in launch.json script
+ + fix the build issue on find command
  + test
   - is jq for bash script is downloaded

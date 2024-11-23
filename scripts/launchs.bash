@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-LAUNCHS_FILE="$HOME/.config/Code/User/launch.json"
+CURRENT_DIR=${PWD}
+
+LAUNCHS_FILE="$CURRENT_DIR/.vscode/launch.json"
 mkdir -p "$(dirname "$LAUNCHS_FILE")"
 
 cat << 'EOF' > "$LAUNCHS_FILE"
@@ -11,7 +13,7 @@ cat << 'EOF' > "$LAUNCHS_FILE"
             "name": "Debug C Files",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Debug/debug",
+            "program": "${workspaceFolder}/debug/debug",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

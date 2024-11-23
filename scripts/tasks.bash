@@ -17,7 +17,7 @@ cat << 'EOF' > "$TASKS_FILE"
             "problemMatcher": []
         },
         {
-            "label": "Build C Files",
+            "label": "Setup and Build",
             "type": "shell",
             "command": "bash",
             "args": [
