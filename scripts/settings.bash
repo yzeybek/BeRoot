@@ -7,18 +7,18 @@ touch "$SETTINGS_FILE"
 add_setting() {
     local new_setting=$1
 
-    if [ ! -s "$settings_file" ]; then
-        echo -e "{\n    ${new_setting}\n}" > "$settings_file"
+    if [ ! -s "$SETTINGS_FILE" ]; then
+        echo -e "{\n    ${new_setting}\n}" > "$SETTINGS_FILE"
         return
     fi
 
     local current_content
-    current_content=$(cat "$settings_file" | jq .)
+    current_content=$(cat "$SETTINGS_FILE" | jq .)
 
     local updated_content
     updated_content=$(echo "$current_content" | jq --argjson new_setting "{${new_setting}}" '. + $new_setting')
 
-    echo "$updated_content" | jq . > "$settings_file"
+    echo "$updated_content" | jq . > "$SETTINGS_FILE"
 }
 
 SET_EMAIL='"42header.email": ""'

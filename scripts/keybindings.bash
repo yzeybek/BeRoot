@@ -7,23 +7,23 @@ touch "$KEYBINDINGS_FILE"
 add_keybinding() {
     local new_keybinding=$1
 
-    if [ ! -s "$keybindings_file" ]; then
-        echo -e "[\n    $new_keybinding\n]" > "$keybindings_file"
+    if [ ! -s "$KEYBINDINGS_FILE" ]; then
+        echo -e "[\n    $new_keybinding\n]" > "$KEYBINDINGS_FILE"
         return
     fi
 
     local current_content
-    current_content=$(cat "$keybindings_file" | jq .)
+    current_content=$(cat "$KEYBINDINGS_FILE" | jq .)
 
     if [ "$current_content" == "null" ]; then
-        echo -e "[\n    $new_keybinding\n]" > "$keybindings_file"
+        echo -e "[\n    $new_keybinding\n]" > "$KEYBINDINGS_FILE"
         return
     fi
 
     local updated_content
     updated_content=$(echo "$current_content" | jq ". + [$new_keybinding]")
 
-    echo "$updated_content" | jq . > "$keybindings_file"
+    echo "$updated_content" | jq . > "$KEYBINDINGS_FILE"
 }
 
 KEY_C='{"key": "meta+c","command": "workbench.action.terminal.copySelection","when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"}'
