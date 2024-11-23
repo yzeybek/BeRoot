@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
+SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
+mkdir -p "$(dirname "$settings_file")"
+touch "$SETTINGS_FILE"
+
 add_setting() {
     local new_setting=$1
-    local settings_file="settings.json"
-
-    mkdir -p "$(dirname "$settings_file")"
-    touch "$settings_file"
 
     if [ ! -s "$settings_file" ]; then
         echo -e "{\n    ${new_setting}\n}" > "$settings_file"

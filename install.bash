@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Setup Docker
-docker build -t Wroot .
+docker build -t wroot .
 
 # docker run -it --restart-always \
 #     -e DISPLAY=$DISPLAY \

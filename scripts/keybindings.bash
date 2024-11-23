@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
+KEYBINDINGS_FILE="$HOME/.config/Code/User/keybindings.json"
+mkdir -p "$(dirname "$keybindings_file")"
+touch "$KEYBINDINGS_FILE"
+
 add_keybinding() {
     local new_keybinding=$1
-    local keybindings_file="$HOME/.config/Code/User/keybindings.json"
-
-    mkdir -p "$(dirname "$keybindings_file")"
-    touch "$keybindings_file"
 
     if [ ! -s "$keybindings_file" ]; then
         echo -e "[\n    $new_keybinding\n]" > "$keybindings_file"
