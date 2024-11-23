@@ -2,7 +2,7 @@
 
 add_extension() {
     local extension=$1
-SET_DEBUG
+
     if ! command -v code &> /dev/null; then
         echo "Error: 'code' command is not available. Ensure VSCode is installed and 'code' is added to PATH."
         return 1
@@ -44,3 +44,4 @@ add_extension "$EXT_COUNT"
 add_extension "$EXT_NORM"
 add_extension "$EXT_HEAD"
 add_extension "$EXT_FORMAT"
+add_extension "$EXT_LAUNCH"

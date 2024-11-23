@@ -3,17 +3,17 @@
 # Setup Docker
 docker build -t Wroot .
 
-docker run -it --restart-always \
-    -e DISPLAY=$DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-	-v $HOME:/root \
-    Wroot
+# docker run -it --restart-always \
+#     -e DISPLAY=$DISPLAY \
+#     -v /tmp/.X11-unix:/tmp/.X11-unix \
+# 	-v $HOME:/root \
+#     Wroot
 
 # Setup .gitignore Script
 GITIGNORE_SCRIPT="$HOME/.config/Code/User/gitignore.bash"
-mkdir -p "$(dirname "$IGNORE_SCRIPT")"
+mkdir -p "$(dirname "$GITIGNORE_SCRIPT")"
 
-cat << 'EOF' > "$IGNORE_SCRIPT"
+cat << 'EOF' > "$GITIGNORE_SCRIPT"
 #!/usr/bin/bash
 
 gitignore_file=".gitignore"
@@ -37,7 +37,7 @@ if [ ! -f "$gitignore_file" ]; then
 fi
 EOF
 
-chmod +x "$IGNORE_SCRIPT"
+chmod +x "$GITIGNORE_SCRIPT"
 
 bash scripts/extensions.bash
 bash scripts/settings.bash

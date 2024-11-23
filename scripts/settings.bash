@@ -2,7 +2,7 @@
 
 add_setting() {
     local new_setting=$1
-    local settings_file="$HOME/.config/Code/User/settings.json"
+    local settings_file="settings.json"
 
     mkdir -p "$(dirname "$settings_file")"
     touch "$settings_file"
@@ -31,7 +31,7 @@ SET_TRIM='"files.trimTrailingWhitespace": true'
 SET_MAKE='"makefile.configureOnOpen": true'
 SET_FORMAT='"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'
 SET_TERMINAL='"terminal.integrated.defaultProfile.linux": "bash"'
-SET_DEBUG='"launches": {"C_Debug":"Debug C Files"}}'
+SET_DEBUG='"launches": {"C_Debug": "Debug C Files"}'
 
 add_setting "$SET_EMAIL"
 add_setting "$SET_USERNAME"
