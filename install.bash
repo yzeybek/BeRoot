@@ -4,7 +4,7 @@
 IMAGE_NAME="wroot"
 
 # Setup Docker
-docker build -t $IMAGE_NAME .
+docker build -t $IMAGE_NAME $HOME/Wroot
 
 docker run -it --restart=always -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/root --device /dev/dri $IMAGE_NAME bash -c "
 

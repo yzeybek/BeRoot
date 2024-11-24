@@ -23,6 +23,7 @@ Hepsinin .desktop dosyası ve dock favorisi ile direk açılabilmeli
 - Brave
 
 Enter Commands:
--general = 
--vscode = code --no-sandbox --user-data-dir="/root/.config/Code"
+-general = docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/root --device /dev/dri --user=root wroot
+-vscode = code --no-sandbox --user-data-dir="/root/.config/Code" --wait
 -brave = brave-browser --no-sandbox
+-

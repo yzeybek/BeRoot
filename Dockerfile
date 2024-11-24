@@ -45,4 +45,3 @@ RUN curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://br
 	&& apt update \
 	&& apt install brave-browser -y
 
-CMD [ "/usr/bin/bash" ]
