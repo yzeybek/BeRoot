@@ -20,6 +20,8 @@ RUN apt-get install -y \
 	vim \
 	wget \
 	gpg \
+	jq \
+	x11-apps \
 	&& apt-get clean autoclean \
     && apt-get autoremove --yes
 
@@ -37,5 +39,10 @@ RUN pipx install norminette && pipx ensurepath \
 	&& python3 -m pip config set global.break-system-packages true \
 	&& pip3 install c_formatter_42 \
 	&& bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
+
+RUN curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg \
+	&& echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list \
+	&& apt update \
+	&& apt install brave-browser -y
 
 CMD [ "/usr/bin/bash" ]

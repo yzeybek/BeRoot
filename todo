@@ -1,4 +1,2 @@
  + add desktop files and favorite handler bash script
  + handle setup and build task with multicommand
- + test
-  - is jq for bash script is downloaded

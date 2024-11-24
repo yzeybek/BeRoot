@@ -8,14 +8,14 @@ add_extension() {
         return 1
     fi
 
-    if code --list-extensions | grep -q "^${extension}$"; then
+    if code --no-sandbox --user-data-dir="/root/.vscode" --list-extensions | grep -q "^${extension}$"; then
         echo "Extension '${extension}' is already installed."
         return 0
     fi
 
-    code --install-extension "$extension" --force
+    code --no-sandbox --user-data-dir="/root/.vscode" --install-extension "$extension" --force
 
-    if ! code --list-extensions | grep -q "^${extension}$"; then
+    if ! code --no-sandbox --user-data-dir="/root/.vscode" --list-extensions | grep -q "^${extension}$"; then
         echo "Error: Failed to install extension '${extension}'."
         return 1
     fi

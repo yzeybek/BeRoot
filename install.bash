@@ -1,23 +1,21 @@
 #!/usr/bin/bash
 
+# Variables
+IMAGE_NAME="wroot"
+
 # Setup Docker
-docker build -t wroot .
+docker build -t $IMAGE_NAME .
 
-# docker run -it --restart-always \
-#     -e DISPLAY=$DISPLAY \
-#     -v /tmp/.X11-unix:/tmp/.X11-unix \
-# 	-v $HOME:/root \
-#     Wroot
+docker run -it --restart=always -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/root --device /dev/dri $IMAGE_NAME bash -c "
 
-# Setup .gitignore Script
-GITIGNORE_SCRIPT="$HOME/.config/Code/User/gitignore.bash"
-mkdir -p "$(dirname "$GITIGNORE_SCRIPT")"
+  GITIGNORE_SCRIPT=\"/root/.config/Code/User/gitignore.bash\"
+  mkdir -p \"\$(dirname \"\$GITIGNORE_SCRIPT\")\"
 
-cat << 'EOF' > "$GITIGNORE_SCRIPT"
+  cat << 'EOF' > \"\$GITIGNORE_SCRIPT\"
 #!/usr/bin/bash
 
-gitignore_file=".gitignore"
-gitignore_content="# Add Yours here
+gitignore_file=\".gitignore\"
+gitignore_content=\"# Add Yours here
 
 # General
 a.out
@@ -30,17 +28,17 @@ data
 **/*.o
 *.o
 *.swp
-**/*.swp"
+**/*.swp\"
 
-if [ ! -f "$gitignore_file" ]; then
-    echo "$gitignore_content" > "$gitignore_file"
-fi
+echo \"\$gitignore_content\" > \"\$gitignore_file\"
 EOF
 
-chmod +x "$GITIGNORE_SCRIPT"
+  chmod +x \"\$GITIGNORE_SCRIPT\"
 
-bash scripts/extensions.bash
-bash scripts/settings.bash
-bash scripts/tasks.bash
-bash scripts/launchs.bash
-bash scripts/keybindings.bash
+  bash /root/Wroot/scripts/extensions.bash
+  bash /root/Wroot/scripts/settings.bash
+  bash /root/Wroot/scripts/tasks.bash
+  bash /root/Wroot/scripts/launchs.bash
+  bash /root/Wroot/scripts/keybindings.bash
+"
+

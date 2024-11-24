@@ -16,6 +16,13 @@ Docker ekstradan GUI uygulamalarını çalıştırabilmeli. Ancak bu özellik 42
 Günün sonunda docker'da olan uygulamalar; (Dockerfile'da)
 - VSCode ✅
 - terminal ✅
+- Brave ✅
 Hepsinin .desktop dosyası ve dock favorisi ile direk açılabilmeli
 - VSCode
 - terminal
+- Brave
+
+Enter Commands:
+-general = 
+-vscode = code --no-sandbox --user-data-dir="/root/.config/Code"
+-brave = brave-browser --no-sandbox
