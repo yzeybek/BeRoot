@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Wterm
+Comment=Launch Docker Terminal (Wterm)
+Exec=bash -c 'docker exec -it Wroot /bin/bash'
+Icon=/home/yzeybek/Wroot/assets/terminal.png
+Terminal=true
+Type=Application
+Categories=Utility;Terminal;
+StartupNotify=true
+
