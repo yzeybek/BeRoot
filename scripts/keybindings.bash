@@ -26,16 +26,4 @@ add_keybinding() {
     echo "$updated_content" | jq . > "$KEYBINDINGS_FILE"
 }
 
-KEY_C='{"key": "meta+c","command": "workbench.action.terminal.copySelection","when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"}'
-KEY_C_REMOVE='{"key": "ctrl+shift+c","command": "-workbench.action.terminal.copySelection","when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"}'
-KEY_V='{"key": "meta+v","command": "workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
-KEY_V_REMOVE='{"key": "ctrl+shift+v","command": "-workbench.action.terminal.paste","when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"}'
-KEY_GITIGNORE='{"key": "meta+shift+g","command": "workbench.action.tasks.runTask","args": "Add .gitignore"}'
-KEY_BUILD='{"key": "meta+shift+d","command": "workbench.action.tasks.runTask","args": "Setup and Build"}'
-
-add_keybinding "$KEY_C"
-add_keybinding "$KEY_C_REMOVE"
-add_keybinding "$KEY_V"
-add_keybinding "$KEY_V_REMOVE"
-add_keybinding "$KEY_GITIGNORE"
-add_keybinding "$KEY_BUILD"
+add_keybinding "'{"key": "meta+g","command": "workbench.action.tasks.runTask","args": "Add .gitignore"}'"

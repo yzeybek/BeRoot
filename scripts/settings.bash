@@ -21,26 +21,13 @@ add_setting() {
     echo "$updated_content" | jq . > "$SETTINGS_FILE"
 }
 
-SET_EMAIL='"42header.email": ""'
-SET_USERNAME='"42header.username": ""'
-SET_SAVE='"files.autoSave": "afterDelay"'
-SET_SPACE='"editor.insertSpaces": false'
-SET_WHITESPACE='"editor.renderWhitespace": "all"'
-SET_NEWLINE='"files.insertFinalNewline": true'
-SET_TRIM='"files.trimTrailingWhitespace": true'
-SET_MAKE='"makefile.configureOnOpen": true'
-SET_FORMAT='"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'
-SET_TERMINAL='"terminal.integrated.defaultProfile.linux": "bash"'
-SET_DEBUG='"launches": {"C_Debug": "Debug C Files"}'
-
-add_setting "$SET_EMAIL"
-add_setting "$SET_USERNAME"
-add_setting "$SET_SAVE"
-add_setting "$SET_SPACE"
-add_setting "$SET_WHITESPACE"
-add_setting "$SET_NEWLINE"
-add_setting "$SET_TRIM"
-add_setting "$SET_MAKE"
-add_setting "$SET_FORMAT"
-add_setting "$SET_TERMINAL"
-add_setting "$SET_DEBUG"
+add_setting "'"42header.email": ""'"
+add_setting "'"42header.username": ""'"
+add_setting "'"files.autoSave": "afterDelay"'"
+add_setting "'"editor.insertSpaces": false'"
+add_setting "'"editor.renderWhitespace": "all"'"
+add_setting "'"files.insertFinalNewline": true'"
+add_setting "'"files.trimTrailingWhitespace": true'"
+add_setting "'"makefile.configureOnOpen": true'"
+add_setting "'"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'"
+add_setting "'"terminal.integrated.defaultProfile.linux": "bash"'"

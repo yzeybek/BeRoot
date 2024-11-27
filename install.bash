@@ -1,44 +1,25 @@
 #!/usr/bin/bash
 
 # Variables
-IMAGE_NAME="wroot"
+IMAGE_NAME="beroot"
+IMAGE_DIR="$HOME/beroot"
+CONTAINER_NAME="BeRoot"
 
-# Setup Docker
-docker build -t $IMAGE_NAME $HOME/Wroot
+# Build Docker
+docker build -t $IMAGE_NAME $IMAGE_DIR
 
-docker run -dit --restart=always -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --name Wroot -v $HOME:/root -v $HOME/.local/share/applications:/usr/share/applications -v $HOME/.local/share/icons:/usr/share/icons --device /dev/dri $IMAGE_NAME 
+docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /dev/dri --env DISPLAY=$DISPLAY \
+-v $HOME:/root \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $HOME/.local/share/icons:/usr/share/icons \
+-v $HOME/.local/share/applications:/usr/share/applications \
+$IMAGE_NAME
 
-#docker exec -dit Wroot bash $HOME/Wroot/setup.bash
+docker exec -it $CONTAINER_NAME bash -c 'bash $HOME/beroot/scripts/downloads.bash'
 
-GITIGNORE_SCRIPT="$HOME/.config/Code/User/gitignore.bash"
-mkdir -p "$(dirname "$GITIGNORE_SCRIPT")"
-
-cat << 'EOF' > "$GITIGNORE_SCRIPT"
-#!/usr/bin/bash
-
-gitignore_file=\".gitignore\"
-gitignore_content=\"# Add Yours here
-
-# General
-a.out
-.vscode
-.DS_Store
-main.c
-test
-data
-.gitignore
-**/*.o
-*.o
-*.swp
-**/*.swp\"
-
-echo "$gitignore_content" > "$gitignore_file"
-EOF
-
-chmod +x "$GITIGNORE_SCRIPT"
-
-bash $HOME/Wroot/scripts/settings.bash
-bash $HOME/Wroot/scripts/tasks.bash
-bash $HOME/Wroot/scripts/launchs.bash
-bash $HOME/Wroot/scripts/keybindings.bash
+bash $IMAGE_DIR/scripts/basics.bash
+bash $IMAGE_DIR/scripts/gitignore.bash
+bash $IMAGE_DIR/scripts/settings.bash
+bash $IMAGE_DIR/scripts/tasks.bash
+bash $IMAGE_DIR/scripts/keybindings.bash
 
