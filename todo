@@ -1,0 +1,20 @@
+# Dependencies
+[ ] Check for dockers cc is clang in 42 computers
+
+# Applications
+[ ] Chrome
+
+[ ] Spotify
+
+[ ] Slack
+
+[ ] Libre Office
+
+[ ] Gimp
+
+# Docker Image
+[ ] Push image to docker hub
+
+# Other
+[ ] Handle desktop tracker
+[ ] Make Ubuntu version same as 42 computers

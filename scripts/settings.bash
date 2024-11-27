@@ -21,13 +21,14 @@ add_setting() {
     echo "$updated_content" | jq . > "$SETTINGS_FILE"
 }
 
-add_setting "'"42header.email": ""'"
-add_setting "'"42header.username": ""'"
-add_setting "'"files.autoSave": "afterDelay"'"
-add_setting "'"editor.insertSpaces": false'"
-add_setting "'"editor.renderWhitespace": "all"'"
-add_setting "'"files.insertFinalNewline": true'"
-add_setting "'"files.trimTrailingWhitespace": true'"
-add_setting "'"makefile.configureOnOpen": true'"
-add_setting "'"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'"
-add_setting "'"terminal.integrated.defaultProfile.linux": "bash"'"
+add_setting '"42header.email": ""'
+add_setting '"42header.username": ""'
+add_setting '"files.autoSave": "afterDelay"'
+add_setting '"editor.insertSpaces": false'
+add_setting '"editor.renderWhitespace": "all"'
+add_setting '"files.insertFinalNewline": true'
+add_setting '"files.trimTrailingWhitespace": true'
+add_setting '"makefile.configureOnOpen": true'
+add_setting '"[c]": {"editor.defaultFormatter": "keyhr.42-c-format"}'
+add_setting '"terminal.integrated.defaultProfile.linux": "bash"'
+add_setting '"workbench.startupEditor": "none"'
