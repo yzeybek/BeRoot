@@ -15,7 +15,7 @@ docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /d
 -v $HOME/.local/share/applications:/usr/share/applications \
 $IMAGE_NAME
 
-docker exec -it $CONTAINER_NAME bash -c 'bash $HOME/beroot/scripts/downloads.bash'
+docker exec -it $CONTAINER_NAME bash -c 'bash $HOME/BeRoot/scripts/downloads.bash'
 
 bash $IMAGE_DIR/scripts/basics.bash
 bash $IMAGE_DIR/scripts/gitignore.bash
