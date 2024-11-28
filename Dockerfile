@@ -29,6 +29,7 @@ RUN apt-get install -y --no-install-recommends \
 	gpg-agent \
 	libnotify4 \
 	default-jre \
+	nano \
 	software-properties-common \
 	&& apt-get clean autoclean \
     	&& apt-get autoremove --yes \

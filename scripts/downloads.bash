@@ -46,7 +46,8 @@ Pin-Priority: 1000
 && apt install firefox -y
 
 # Thunderbird
-echo '
+add-apt-repository ppa:mozillateam/ppa \
+&& echo '
 Package: thunderbird*
 Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001

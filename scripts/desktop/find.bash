@@ -1,13 +1,10 @@
 #!/usr/bin/bash
 
 DIR="/usr/share/applications"
-SCRIPT="$HOME/BeRoot/desktop/converter.bash"
-MTIME=-0.000694
+SCRIPT="$HOME/BeRoot/scripts/desktop/converter.bash"
 
-while true; do
-    find "$DIR" -name "*.desktop" -mtime $MTIME
-    if [ $? -eq 0 ]; then
-        bash $SCRIPT
-    fi
-    sleep 5
-done
+FILE=$(find "$DIR" -name -type f -exec ls -lt --time-style=+%s {} + | sort -k6,6nr | head -n 1)
+if [ -n "${FILE}" ]; then
+   bash $SCRIPT ${FILE}
+fi
+    
