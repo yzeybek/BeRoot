@@ -1,20 +1,18 @@
-# Dependencies
-[ ] Check for dockers cc is clang in 42 computers
-
 # Applications
-[ ] Chrome
-
 [ ] Spotify
 
 [ ] Slack
 
-[ ] Libre Office
-
-[ ] Gimp
-
 # Docker Image
+[ ] Add all downloads to Dockerfile
 [ ] Push image to docker hub
+
+# Scripts
+[ ] Add a script that handles .desktop files and icons
+
+# Test
+[ ] Is francinette working fine
+[ ] Is norminette working fine
 
 # Other
 [ ] Handle desktop tracker
-[ ] Make Ubuntu version same as 42 computers
