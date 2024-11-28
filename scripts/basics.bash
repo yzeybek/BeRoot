@@ -15,3 +15,5 @@ gsettings set org.gnome.shell.extensions.ding show-home false
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
 
 nmcli connection down "Wired connection 2"
+
+echo 'xrandr --output eDP --mode 3200x1800' > ~/.profile
