@@ -20,4 +20,4 @@ docker exec -it $CONTAINER_NAME /usr/bin/bash -c '/usr/bin/bash /root/BeRoot/scr
 bash $IMAGE_DIR/scripts/basics.bash
 bash $IMAGE_DIR/scripts/snippets.bash
 bash $IMAGE_DIR/scripts/settings.bash
- 
+

@@ -1,8 +1,10 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -y update && apt-get -y upgrade
 
-RUN apt-get install -y \
+RUN apt-get install -y --no-install-recommends \
 	build-essential \
 	perl \
 	automake \
@@ -23,8 +25,13 @@ RUN apt-get install -y \
 	jq \
 	x11-apps \
 	inotify-tools \
+	dbus-x11 \
+	gpg-agent \
+	libnotify4 \
+	default-jre \
 	software-properties-common \
 	&& apt-get clean autoclean \
-    && apt-get autoremove --yes
+    	&& apt-get autoremove --yes \
+    	&& ln -sf $(which clang) $(which cc)
 
 WORKDIR /root
