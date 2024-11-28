@@ -1,0 +1,26 @@
+[Desktop Entry]
+Version=1.0
+Name=Tilix
+Comment=A tiling terminal for Gnome
+Keywords=shell;prompt;command;commandline;cmd;
+Exec=bash -c "docker exec -dit BeRoot tilix --no-sandbox"
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;TerminalEmulator;X-GNOME-Utilities;
+Icon=com.gexperts.Tilix
+DBusActivatable=true
+Actions=new-window;new-session;preferences;
+X-Ubuntu-Gettext-Domain=tilix
+
+[Desktop Action new-window]
+Name=New Window
+Exec=bash -c "docker exec -dit BeRoot tilix --action=app-new-window --no-sandbox"
+
+[Desktop Action new-session]
+Name=New Session
+Exec=bash -c "docker exec -dit BeRoot tilix --action=app-new-session --no-sandbox"
+
+[Desktop Action preferences]
+Name=Preferences
+Exec=bash -c "docker exec -dit BeRoot tilix --preferences --no-sandbox"
