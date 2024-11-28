@@ -21,3 +21,4 @@ bash $IMAGE_DIR/scripts/basics.bash
 bash $IMAGE_DIR/scripts/snippets.bash
 bash $IMAGE_DIR/scripts/settings.bash
 
+docker exec -it $CONTAINER_NAME /usr/bin/bash -c 'bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"'

@@ -18,7 +18,13 @@ code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "ms-v
 && code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "dokca.42-ft-count-line" --force \
 && code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "evilcat.norminette-42" --force \
 && code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "kube.42header" --force \
-&& code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "keyhr.42-c-format" --force
+&& code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "keyhr.42-c-format" --force \
+&& python3 -m pip config set global.break-system-packages true \
+&& pip3 install c_formatter_42
+
+# Norminette
+pipx install norminette \
+&& pipx ensurepath
 
 # Brave
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg \
