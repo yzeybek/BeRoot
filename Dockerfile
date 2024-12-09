@@ -28,8 +28,10 @@ RUN apt-get install -y --no-install-recommends \
 	dbus-x11 \
 	gpg-agent \
 	libnotify4 \
-	default-jre \
+	openjdk-8-jre \
+	openjfx \
 	nano \
+	iputils-ping \
 	software-properties-common \
 	&& apt-get clean autoclean \
     	&& apt-get autoremove --yes \
