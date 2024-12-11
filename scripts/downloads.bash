@@ -22,14 +22,6 @@ code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "ms-v
 && python3 -m pip config set global.break-system-packages true \
 && pip3 install c_formatter_42
 
-# Francinette
-python3 -m pip config set global.break-system-packages true \
-&& bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
-
-# Norminette
-pipx install norminette \
-&& pipx ensurepath
-
 # Brave
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"| tee /etc/apt/sources.list.d/brave-browser-release.list \

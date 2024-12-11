@@ -46,4 +46,3 @@ for file in "${new_files[@]}"; do
 done
 
 find "$APPLICATIONS_DIR" -maxdepth 1 -name "*.desktop" > "$FILES_TXT"
-
