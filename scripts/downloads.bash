@@ -22,6 +22,10 @@ code --no-sandbox --user-data-dir="/root/.config/Code" --install-extension "ms-v
 && python3 -m pip config set global.break-system-packages true \
 && pip3 install c_formatter_42
 
+# Francinette
+python3 -m pip config set global.break-system-packages true \
+&& bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
+
 # Norminette
 pipx install norminette \
 && pipx ensurepath
