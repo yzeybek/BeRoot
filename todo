@@ -4,15 +4,11 @@
 [ ] Slack
 
 # Docker Image
-[ ] Add all downloads to Dockerfile
 [ ] Push image to docker hub
 
 # Scripts
-[ ] Add a script that handles .desktop files and icons
+[ ] Add a installer script with interactive way
 
 # Test
 [ ] Is francinette working fine
 [ ] Is norminette working fine
-
-# Other
-[ ] Handle desktop tracker
