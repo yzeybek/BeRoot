@@ -67,7 +67,7 @@ apt install gimp -y
 mkdir -p "$HOME/Minecraft" \
 && curl https://dl2.tlauncher.org/f.php?f=files%2FTLauncher.v11.zip -o "$HOME/Minecraft/TLauncher.v11.zip" \
 && mkdir -p "$HOME/.local/share/icons" \
-&& curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/assets/icons/minecraft.png -o "$HOME/Minecraft/minecraft.png" \
+&& curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/assets/minecraft.png -o "$HOME/Minecraft/minecraft.png" \
 && unzip "$HOME/Minecraft/TLauncher.v11.zip" -d "$HOME/Minecraft" \
 && rm -rf "$HOME/Minecraft/TLauncher.v11.zip" "$HOME/Minecraft/README-EN.txt" "$HOME/Minecraft/README-RUS.txt" \
 && echo "[Desktop Entry]
