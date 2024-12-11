@@ -34,7 +34,7 @@ RUN apt-get install -y --no-install-recommends \
 	iputils-ping \
 	software-properties-common \
 	&& apt-get clean autoclean \
-    	&& apt-get autoremove --yes \
-    	&& ln -sf $(which clang) $(which cc)
+    && apt-get autoremove --yes \
+    && ln -sf $(which clang) $(which cc)
 
 WORKDIR /root

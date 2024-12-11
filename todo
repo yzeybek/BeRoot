@@ -8,8 +8,8 @@
 
 # Scripts
 [ ] Add a installer script with interactive way
-[ ] Converter should also add desktop file to dock
 
 # Test
 [ ] Is francinette working fine
 [ ] Is norminette working fine
+[ ] Is dock add working on converter

@@ -81,7 +81,7 @@ mkdir -p "$HOME/Minecraft" \
 && echo "[Desktop Entry]
 Name=Minecraft TLauncher
 Comment=Launch Minecraft via TLauncher
-Exec=sudo java -jar $HOME/Minecraft/TLauncher.jar
+Exec=bash -c "docker exec -dit BeRoot java -jar $HOME/Minecraft/TLauncher.jar"
 Icon=$HOME/Minecraft/minecraft.png
 Terminal=false
 Type=Application

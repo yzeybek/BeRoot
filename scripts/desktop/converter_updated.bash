@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-APPLICATIONS_DIR="/root/.local/share/applications"
+APPLICATIONS_DIR="$HOME/.local/share/applications"
 FILES_TXT="$APPLICATIONS_DIR/files.txt"
 
 touch "$FILES_TXT"
@@ -36,6 +36,13 @@ for file in "${new_files[@]}"; do
 
     mv "$temp_file" "$file"
     echo "Updated: $file"
+
+    name=$(basename "$file")
+    current_favorites=$(gsettings get org.gnome.shell favorite-apps)
+    current_favorites_cleaned=$(echo "$current_favorites" | sed "s/^\[//" | sed "s/\]//")
+    new_favorites="$current_favorites_cleaned, '$name'"
+    new_favorites_wrapped="[$new_favorites]"
+    gsettings set org.gnome.shell favorite-apps "$new_favorites_wrapped"
 done
 
 find "$APPLICATIONS_DIR" -maxdepth 1 -name "*.desktop" > "$FILES_TXT"
