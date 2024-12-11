@@ -68,22 +68,21 @@ apt install libreoffice -y
 apt install gimp -y
 
 # Minecraft
-mkdir -p "$HOME/Minecraft"
-curl https://dl2.tlauncher.org/f.php?f=files%2FTLauncher.v11.zip -o "$HOME/Minecraft/TLauncher.v11.zip"
-mkdir -p "$HOME/.local/share/applications/icons"
-curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/assets/icons/minecraft.png -o "$HOME/.local/share/applications/icons/minecraft.png"
-unzip "$HOME/Minecraft/TLauncher.v11.zip" -d "$HOME/Minecraft"
-rm -rf "$HOME/Minecraft/TLauncher.v11.zip" "$HOME/Minecraft/README-EN.txt" "$HOME/Minecraft/README-RUS.txt"
-cat << EOF "$HOME/.local/share/applications/minecraft.desktop"
-[Desktop Entry]
+mkdir -p "$HOME/Minecraft" \
+&& curl https://dl2.tlauncher.org/f.php?f=files%2FTLauncher.v11.zip -o "$HOME/Minecraft/TLauncher.v11.zip" \
+&& mkdir -p "$HOME/.local/share/icons" \
+&& curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/assets/icons/minecraft.png -o "$HOME/Minecraft/minecraft.png" \
+&& unzip "$HOME/Minecraft/TLauncher.v11.zip" -d "$HOME/Minecraft" \
+&& rm -rf "$HOME/Minecraft/TLauncher.v11.zip" "$HOME/Minecraft/README-EN.txt" "$HOME/Minecraft/README-RUS.txt" \
+&& echo "[Desktop Entry]
 Name=Minecraft TLauncher
 Comment=Launch Minecraft via TLauncher
-Exec=sudo java -jar /root/Minecraft/TLauncher.jar
-Icon=/root/.local/share/icons/minecraft.png
+Exec=sudo java -jar $HOME/Minecraft/TLauncher.jar
+Icon=$HOME/Minecraft/minecraft.png
 Terminal=false
 Type=Application
-Categories=Game;
-EOF
+Categories=Game;" > "$HOME/.local/share/applications/minecraft.desktop" \
+&& update-desktop-database ~/.local/share/applications
 
 # Spotify
 
