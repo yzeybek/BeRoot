@@ -13,3 +13,12 @@
 [ ] Is francinette working fine
 [ ] Is norminette working fine
 [ ] Is dock add working on converter
+
+# Logic
+ ↓ Open dock and other extensions
+ ↓ Take docker image via dockerhub
+ ↓ image will run with long command
+ ↓ francinette and norminette has to be installed
+ ↓ give the control to terminal starter
+ ↓ setup desktop tracker with apt post-command
+ ↓ and all the other apps asked to user with interface

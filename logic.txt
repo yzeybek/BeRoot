@@ -1,7 +1,0 @@
-1- Open dock and other extensions
-2- Take docker image via dockerhub
-3- image will run with long command
-4- francinette and norminette has to be installed
-5- give the control to terminal starter
-6- setup desktop tracker with apt post-command
-7- and all the other apps asked to user with interface
