@@ -2,13 +2,15 @@
 [ ] Spotify
 [ ] Slack
 
+# Fix
+[ ] VSCode Icon not showing!
+[ ] Can't add dock after setup
+
 # Docker Image
-[ ] Add package tracker system
-[ ] Make tag the latest
+[ ] Handle sgoinfre
 
 # Scripts
-[ ] Add a installer script with interactive way
+[ ] 
 
 # Test
 [ ] Is francinette working fine
-[ ] Is dock add working on converter

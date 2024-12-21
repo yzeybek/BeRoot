@@ -47,7 +47,7 @@ function setup {
 	gnome-extensions enable ubuntu-dock@ubuntu.com
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
 	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/converter.bash -P $REPO_DIR
-	docker exec -dit $CONTAINER_NAME bash -c "echo \"DPkg::Post-Invoke { \"$REPO_DIR/converter.bash\"; };\" > /etc/apt/apt.conf.d/BeRoot_convert"
+	docker exec -dit $CONTAINER_NAME bash -c 'echo "DPkg::Post-Invoke { \"bash /root/BeRoot/converter.bash\"; };" > /etc/apt/apt.conf.d/BeRoot_convert'
 }
 
 function menu {
