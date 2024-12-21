@@ -2,8 +2,8 @@
 
 # Variables
 IMAGE_REPO="yzeybek/beroot"
-IMAGE_DIR="$HOME/BeRoot"
 CONTAINER_NAME="BeRoot"
+REPO_DIR="$HOME/BeRoot"
 
 function banner {
 	echo "
@@ -19,22 +19,26 @@ function banner {
 
 function setup {
 	# Setup Config Updater
-	cat <<EOL > ~/.config/autostart/update-docker-config.desktop
+	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/docker_config_updater.bash -P $REPO_DIR
+	cat <<EOL > ~/.config/autostart/docker_config_updater.desktop
 [Desktop Entry]
 Type=Application
-Exec=$HOME/BeRoot/docker_config_updater.bash
+Exec=$REPO_DIR/docker_config_updater.bash
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
 Name=Update Docker Config
 Comment=Updates Docker daemon.json at login
 EOL
+	chmod +x $REPO_DIR/docker_config_updater.bash
+	$REPO_DIR/docker_config_updater.bash
+	
 
 	# Pull Image
 	docker pull $IMAGE_REPO
 
 	# Run Container
-	docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /dev/dri --env DISPLAY=$DISPLAY \
+	docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /dev/dri --env DISPLAY=$DISPLAY --env REPO_DIR=$REPO_DIR \
 	-v $HOME:/root \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v $HOME/.local/share/icons:/usr/share/icons \
@@ -51,15 +55,16 @@ EOL
 											&& rm -f /etc/apt/apt.conf.d/BeRoot_yes'
 
 	# Setup Terminal
-	profile_id="${gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g"}"
+	profile_id="$(gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g")"
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile_id/ use-custom-command true
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile_id/ custom-command 'docker exec -it BeRoot bash'
 
 	# Setup Converter
 	gnome-extensions enable ubuntu-dock@ubuntu.com
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
-	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/scripts/converter.bash -P $HOME/
-	docker exec -dit $CONTAINER_NAME bash -c 'echo "DPkg::Post-Invoke { \"/root/converter.bash\"; };" > /etc/apt/apt.conf.d/BeRoot_convert'
+	mkdir -p $REPO_DIR
+	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/converter.bash -P $REPO_DIR
+	docker exec -dit $CONTAINER_NAME bash -c "echo \"DPkg::Post-Invoke { \"$REPO_DIR/converter.bash\"; };\" > /etc/apt/apt.conf.d/BeRoot_convert"
 }
 
 function menu {
@@ -151,7 +156,7 @@ function minecraft {
 	docker exec -it $CONTAINER_NAME bash -c "mkdir -p '$\HOME/Minecraft' \
 											&& curl https://dl2.tlauncher.org/f.php?f=files%2FTLauncher.v11.zip -o '\$HOME/Minecraft/TLauncher.v11.zip' \
 											&& mkdir -p '\$HOME/.local/share/icons' \
-											&& curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/assets/minecraft.png -o '\$HOME/Minecraft/minecraft.png' \
+											&& curl https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/minecraft.png -o '\$HOME/Minecraft/minecraft.png' \
 											&& unzip '\$HOME/Minecraft/TLauncher.v11.zip' -d '\$HOME/Minecraft' \
 											&& rm -rf '\$HOME/Minecraft/TLauncher.v11.zip' '\$HOME/Minecraft/README-EN.txt' '\$HOME/Minecraft/README-RUS.txt' \
 && echo '[Desktop Entry]
