@@ -18,6 +18,18 @@ function banner {
 }
 
 function setup {
+	# Setup Config Updater
+	cat <<EOL > ~/.config/autostart/update-docker-config.desktop
+[Desktop Entry]
+Type=Application
+Exec=$HOME/BeRoot/docker_config_updater.bash
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Update Docker Config
+Comment=Updates Docker daemon.json at login
+EOL
+
 	# Pull Image
 	docker pull $IMAGE_REPO
 
