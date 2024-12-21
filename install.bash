@@ -18,22 +18,6 @@ function banner {
 }
 
 function setup {
-	# Setup Config Updater
-	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/docker_config_updater.bash -P $REPO_DIR
-	cat <<EOL > ~/.config/autostart/docker_config_updater.desktop
-[Desktop Entry]
-Type=Application
-Exec=$REPO_DIR/docker_config_updater.bash
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name=Update Docker Config
-Comment=Updates Docker daemon.json at login
-EOL
-	chmod +x $REPO_DIR/docker_config_updater.bash
-	$REPO_DIR/docker_config_updater.bash
-	
-
 	# Pull Image
 	docker pull $IMAGE_REPO
 
@@ -62,7 +46,6 @@ EOL
 	# Setup Converter
 	gnome-extensions enable ubuntu-dock@ubuntu.com
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
-	mkdir -p $REPO_DIR
 	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/converter.bash -P $REPO_DIR
 	docker exec -dit $CONTAINER_NAME bash -c "echo \"DPkg::Post-Invoke { \"$REPO_DIR/converter.bash\"; };\" > /etc/apt/apt.conf.d/BeRoot_convert"
 }
@@ -170,6 +153,7 @@ Categories=Game;' > '\$HOME/.local/share/applications/minecraft.desktop' \
 											&& update-desktop-database ~/.local/share/applications"
 }
 
+clear
 banner
 setup
 while [ 1 ]
