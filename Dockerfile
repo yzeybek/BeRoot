@@ -32,6 +32,13 @@ RUN apt-get install -y --no-install-recommends \
 	openjfx \
 	nano \
 	iputils-ping \
+	openssh-server \
+	xorriso \
+	isolinux \
+	syslinux-utils \
+	genisoimage \
+	tar \
+	p7zip-full \
 	software-properties-common \
 	&& apt-get clean autoclean \
     && apt-get autoremove --yes \
