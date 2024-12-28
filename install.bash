@@ -6,15 +6,15 @@ CONTAINER_NAME="BeRoot"
 REPO_DIR="$HOME/BeRoot"
 
 function banner {
-	echo "
-	██████╗ ███████╗██████╗  ██████╗  ██████╗ ████████╗
-	██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔═══██╗╚══██╔══╝
-	██████╔╝█████╗  ██████╔╝██║   ██║██║   ██║   ██║
-	██╔══██╗██╔══╝  ██╔══██╗██║   ██║██║   ██║   ██║
-	██████╔╝███████╗██║  ██║╚██████╔╝╚██████╔╝   ██║
-	╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝
+echo "
+██████╗ ███████╗██████╗  ██████╗  ██████╗ ████████╗
+██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔═══██╗╚══██╔══╝
+██████╔╝█████╗  ██████╔╝██║   ██║██║   ██║   ██║
+██╔══██╗██╔══╝  ██╔══██╗██║   ██║██║   ██║   ██║
+██████╔╝███████╗██║  ██║╚██████╔╝╚██████╔╝   ██║
+╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝
 
-	"
+"
 }
 
 function setup {
@@ -22,12 +22,14 @@ function setup {
 	docker pull $IMAGE_REPO
 
 	# Run Container
-	docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /dev/dri --env DISPLAY=$DISPLAY --env REPO_DIR=$REPO_DIR \
+	docker run -dit --restart=always --name $CONTAINER_NAME --privileged --device /dev/dri -e DISPLAY=$DISPLAY -e REPO_DIR=$REPO_DIR \
 	-v $HOME:/root \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v $HOME/.local/share/icons:/usr/share/icons \
 	-v $HOME/.local/share/applications:/usr/share/applications \
 	-v /goinfre/$USER:/goinfre/root \
+	-v /sgoinfre/$USER:/sgoinfre/root \
+	-v $HOME/.local/share/icons:/usr/share/pixmaps \
 	$IMAGE_REPO
 
 	# Install norminette and francinette
@@ -46,23 +48,69 @@ function setup {
 	# Setup Converter
 	gnome-extensions enable ubuntu-dock@ubuntu.com
 	gnome-extensions enable dash-to-dock@micxgx.gmail.com
-	wget https://raw.githubusercontent.com/yzeybek/BeRoot/refs/heads/main/converter.bash -P $REPO_DIR
-	docker exec -dit $CONTAINER_NAME bash -c 'echo "DPkg::Post-Invoke { \"bash /root/BeRoot/converter.bash\"; };" > /etc/apt/apt.conf.d/BeRoot_convert'
+
+	mkdir -p $REPO_DIR
+
+echo '
+#!/usr/bin/bash
+
+APPLICATIONS_DIR="$HOME/.local/share/applications"
+FILES_TXT="$APPLICATIONS_DIR/.files.txt"
+
+touch "$FILES_TXT"
+
+if [[ -f "$FILES_TXT" ]]; then
+    mapfile -t previous_files < "$FILES_TXT"
+else
+    previous_files=()
+fi
+
+mapfile -t current_files < <(find "$APPLICATIONS_DIR" -maxdepth 1 -name "*.desktop")
+
+new_files=()
+for file in "${current_files[@]}"; do
+    if [[ ! " ${previous_files[@]} " =~ " $file " ]]; then
+        new_files+=("$file")
+    fi
+done
+
+for file in "${new_files[@]}"; do
+    echo "Processing: $file"
+    temp_file="${file}.tmp"
+
+    while IFS= read -r line; do
+        if [[ "$line" =~ ^Exec=(.*) ]]; then
+            original_exec="${BASH_REMATCH[1]}"
+            modified_exec="Exec=bash -c \"docker exec -dit BeRoot $original_exec --no-sandbox\""
+            echo "$modified_exec" >> "$temp_file"
+        else
+            echo "$line" >> "$temp_file"
+        fi
+    done < "$file"
+
+    mv "$temp_file" "$file"
+    echo "Updated: $file"
+done
+
+find "$APPLICATIONS_DIR" -maxdepth 1 -name "*.desktop" > "$FILES_TXT"
+' > "$REPO_DIR/converter.bash"
+
+docker exec -dit $CONTAINER_NAME bash -c 'echo "DPkg::Post-Invoke { \"bash /root/BeRoot/converter.bash\"; };" > /etc/apt/apt.conf.d/BeRoot_convert'
 }
 
 function menu {
   echo
-  echo -e "\t\t\t Download Menu:\n"
-  echo -e "\t1. VSCode"
-  echo -e "\t2. Brave Browser"
-  echo -e "\t3. Firefox"
-  echo -e "\t3. Thunderbird"
-  echo -e "\t3. Google Chrome"
-  echo -e "\t3. LibreOffice"
-  echo -e "\t3. GIMP"
-  echo -e "\t3. Minecraft"
-  echo -e "\t0. Exit menu."
-  echo -en "\t\t Enter option: "
+  echo -e "Download Menu:\n"
+  echo -e "1. VSCode"
+  echo -e "2. Brave Browser"
+  echo -e "3. Firefox"
+  echo -e "4. Thunderbird"
+  echo -e "5. Google Chrome"
+  echo -e "6. LibreOffice"
+  echo -e "7. GIMP"
+  echo -e "8. Minecraft"
+  echo -e "0. Exit menu."
+  echo -en "\nEnter option: "
 
   read -n 1 option
 }
@@ -158,6 +206,8 @@ banner
 setup
 while [ 1 ]
 do
+  clear
+  banner
   menu
   case $option in
     0)
@@ -182,7 +232,7 @@ do
       clear
       echo "That isn't a valid option."
   esac
-  echo -en "\n\n\t\t Hit any key to continue..."
+  echo -en "\n\nHit any key to continue..."
   read -n 1 line
 done
 clear
