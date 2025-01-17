@@ -2,11 +2,10 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y update && apt-get -y upgrade
-
-RUN apt-get install -y --no-install-recommends \
+RUN apt update -y && apt upgrade -y && apt install -y --no-install-recommends \
 	build-essential \
 	perl \
+	gdb \
 	automake \
 	clang \
 	valgrind \
@@ -40,8 +39,7 @@ RUN apt-get install -y --no-install-recommends \
 	tar \
 	p7zip-full \
 	software-properties-common \
-	&& apt-get clean autoclean \
-    && apt-get autoremove --yes \
-    && ln -sf $(which clang) $(which cc)
+	&& apt autoremove -y \
+    	&& ln -sf $(which clang) $(which cc)
 
 WORKDIR /root
